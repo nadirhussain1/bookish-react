@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import BookList from './Booklist';
 import { useRemoteService } from '../hooks';
-import {
-    TextField
-} from '@material-ui/core';
-import SearchBox from './SearchBox';
+
+import SearchBox from '../Search/SearchBox';
 
 
 const BookListContainer = () => {
