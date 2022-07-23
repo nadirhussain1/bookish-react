@@ -16,7 +16,6 @@ const App = () => {
         Bookish
       </Typography>
 
-      <BookListContainer/>
 
       <Routes>
         <Route exact path='/' element={<BookListContainer/>} />
