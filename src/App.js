@@ -1,9 +1,8 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import BookListContainer from './BookListContainer';
-import BookDetailContainer from './BookDetailContainer';
+import BookListContainer from './BookList/BookListContainer';
+import BookDetailContainer from './BookDetail/BookDetailContainer';
 import {Route, Routes} from 'react-router-dom';
-
 
 const App = () => {
  
@@ -20,7 +19,7 @@ const App = () => {
       <BookListContainer/>
 
       <Routes>
-        <Route exact path='/' element={BookListContainer} />
+        <Route exact path='/' element={<BookListContainer/>} />
         <Route  path='/books/:id' element={<BookDetailContainer/>} />
 
       </Routes>

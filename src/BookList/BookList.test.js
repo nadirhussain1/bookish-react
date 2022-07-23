@@ -1,6 +1,15 @@
 import BookList from './Booklist';
 import React from 'react';
 import { render } from '@testing-library/react';
+import { MemoryRouter as Router } from 'react-router-dom';
+
+const renderWithRouter = (component) => {
+    return {
+        ...render(<Router>
+            {component}
+        </Router>)
+    }
+};
 
 describe('BookList', () => {
     it('loading', () => {
@@ -8,7 +17,7 @@ describe('BookList', () => {
             loading: true,
         };
 
-        const { container } = render(<BookList {...props} />)
+        const { container } = renderWithRouter(<BookList {...props} />)
         const content = container.querySelector('p');
         expect(content.innerHTML).toContain('Loading');
 
@@ -19,7 +28,7 @@ describe('BookList', () => {
             error: true,
         };
 
-        const { container } = render(<BookList {...props} />)
+        const { container } = renderWithRouter(<BookList {...props} />)
         const content = container.querySelector('p');
         expect(content.innerHTML).toContain('Error');
 
@@ -28,12 +37,13 @@ describe('BookList', () => {
     it('books', () => {
         const props = {
             books: [
-              { 'name': 'Refactoring', 'id': 1 },
-              { 'name': 'Domain-driven design', 'id': 2 },
-        ] };
+                { 'name': 'Refactoring', 'id': 1 },
+                { 'name': 'Domain-driven design', 'id': 2 },
+            ]
+        };
 
-        const { container } = render(<BookList {...props} />)
-        const titles =  [...container.querySelectorAll('h2')].map(x => x.innerHTML);
+        const { container } = renderWithRouter(<BookList {...props} />)
+        const titles = [...container.querySelectorAll('h2')].map(x => x.innerHTML);
         expect(titles).toEqual(['Refactoring', 'Domain-driven design']);
     });
 });
